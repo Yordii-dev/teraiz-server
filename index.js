@@ -20,7 +20,7 @@ app.post("/api/contact", async (req, res) => {
   const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
     port: process.env.MAIL_PORT,
-    secure: true, // true para 465
+    secure: true,
     auth: {
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS,
@@ -29,12 +29,12 @@ app.post("/api/contact", async (req, res) => {
 
   try {
     let r = await transporter.sendMail({
-      from: `"Formulario Web" <${process.env.MAIL_USER}>`,
-      to: process.env.MAIL_USER,
-      subject: "Nuevo mensaje de contacto",
+      from: `"Teraiz.com" <${process.env.MAIL_USER}>`,
+      to: process.env.MAIL_ADDRESS,
+      subject: "Nuevo mensaje de lead",
       html: `
         <h2>Nuevo mensaje</h2>
-        <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Nombre:</strong> ${name ?? "Sin nombre"}</p>
         <p><strong>Correo:</strong> ${email}</p>
         <p><strong>Mensaje:</strong></p>
         <p>${message}</p>

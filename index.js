@@ -34,7 +34,7 @@ app.post("/api/contact", async (req, res) => {
       subject: "Nuevo mensaje de lead",
       html: `
         <h2>Nuevo mensaje</h2>
-        <p><strong>Nombre:</strong> ${name ?? "Sin nombre"}</p>
+        <p><strong>Nombre:</strong> ${!name ? "Sin nombre" : name}</p>
         <p><strong>Correo:</strong> ${email}</p>
         <p><strong>Mensaje:</strong></p>
         <p>${message}</p>

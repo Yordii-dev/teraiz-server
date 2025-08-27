@@ -14,7 +14,7 @@ app.get("/api/contact", async (req, res) => {
 });
 
 app.post("/api/contact", async (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, phone } = req.body;
   console.log("body: ", req.body);
 
   const transporter = nodemailer.createTransport({
@@ -34,11 +34,10 @@ app.post("/api/contact", async (req, res) => {
       subject: "Nuevo mensaje de lead",
       html: `
         <h2>Nuevo mensaje</h2>
-        <p><strong>Nombre:</strong> ${!name ? "Sin nombre" : name}</p>
+        <p><strong>Nombre:</strong> ${name}</p>
         <p><strong>Correo:</strong> ${email}</p>
-        <p><strong>Mensaje:</strong></p>
-        <p>${message}</p>
-      `,
+        <p><strong>Telefono:</strong>${phone}</p>
+       `,
     });
 
     res.status(200).json({ ok: true, message: "Correo enviado", r });
